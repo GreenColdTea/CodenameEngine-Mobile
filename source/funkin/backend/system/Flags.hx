@@ -196,6 +196,7 @@ class Flags {
 	public static var DISABLE_WARNING_SCREEN:Bool = true;
 	public static var DISABLE_TRANSITIONS:Bool = false;
 	public static var DISABLE_LANGUAGES:Bool = false;
+	public static var DISABLE_AUTOUPDATER:Bool = false;
 
 	@:also(funkin.backend.MusicBeatTransition.script)
 	public static var DEFAULT_TRANSITION_SCRIPT:String = "";
@@ -285,7 +286,10 @@ class Flags {
 			}
 		}
 
-		if (!flags.exists("WINDOW_TITLE_USE_MOD_NAME")) flags.set("WINDOW_TITLE_USE_MOD_NAME", flags.exists('TITLE') ? 'false' : 'true');
+		if (!flags.exists("WINDOW_TITLE_USE_MOD_NAME")) WINDOW_TITLE_USE_MOD_NAME = !flags.exists('TITLE');
+		else WINDOW_TITLE_USE_MOD_NAME = parseBool(flags.get("WINDOW_TITLE_USE_MOD_NAME"));
+
+		flags.remove("WINDOW_TITLE_USE_MOD_NAME");
 	}
 
 	public static function loadFromDatas(datas:Array<String>) {

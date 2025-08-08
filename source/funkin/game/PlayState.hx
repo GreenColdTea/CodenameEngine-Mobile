@@ -1115,8 +1115,12 @@ class PlayState extends MusicBeatState
 
 		FlxG.sound.setMusic(inst = FlxG.sound.load(Assets.getMusic(Paths.inst(SONG.meta.name, difficulty, SONG.meta.instSuffix))));
 
-		var vocalsPath = Paths.voices(SONG.meta.name, difficulty);
-		vocals = Assets.exists(vocalsPath) ? FlxG.sound.load(Options.streamedVocals ? Assets.getMusic(vocalsPath) : vocalsPath) : new FlxSound();
+		var vocalsPath = Paths.voices(SONG.meta.name, difficulty, SONG.meta.vocalsSuffix);
+		if (SONG.meta.needsVoices && Assets.exists(vocalsPath))
+			vocals = FlxG.sound.load(Options.streamedVocals ? Assets.getMusic(vocalsPath) : vocalsPath);
+		else
+			vocals = new FlxSound();
+
 		vocals.group = FlxG.sound.defaultMusicGroup;
 		vocals.persist = false;
 

@@ -121,6 +121,8 @@ class Chart {
 		data.setFieldDefault("coopAllowed", Flags.DEFAULT_COOP_ALLOWED);
 		data.setFieldDefault("opponentModeAllowed", Flags.DEFAULT_OPPONENT_MODE_ALLOWED);
 		data.setFieldDefault("instSuffix", "");
+		data.setFieldDefault("vocalsSuffix", "");
+		data.setFieldDefault("needsVoices", true);
 
 		if (data.difficulties.length <= 0) {
 			data.difficulties = [for(f in Paths.getFolderContent('songs/${songName}/charts/', false, fromMods ? MODS : SOURCE)) if (Path.extension(f.toUpperCase()) == "JSON") Path.withoutExtension(f)];

@@ -30,6 +30,8 @@ typedef ChartMetaData = {
 	public var ?customValues:Dynamic;
 	public var ?metas:Map<String, ChartMetaData>;
 	public var ?instSuffix:String;
+	public var ?vocalsSuffix:String;
+	public var ?needsVoices:Bool;
 }
 
 typedef ChartStrumLine = {

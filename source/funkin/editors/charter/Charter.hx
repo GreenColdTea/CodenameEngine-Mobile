@@ -602,7 +602,12 @@ class Charter extends UIState {
 		noteTypes = PlayState.SONG.noteTypes;
 
 		FlxG.sound.setMusic(FlxG.sound.load(Paths.inst(__song, __diff, PlayState.SONG.meta.instSuffix)));
-		vocals = Assets.exists(Paths.voices(__song, __diff)) ? FlxG.sound.load(Paths.voices(__song, __diff)) : new FlxSound();
+		if (Assets.exists(Paths.voices(__song, __diff, PlayState.SONG.meta.vocalsSuffix)))
+			vocals = FlxG.sound.load(Paths.voices(__song, __diff, PlayState.SONG.meta.vocalsSuffix));
+		else
+			vocals = new FlxSound();
+
+		vocals.muted = !PlayState.SONG.meta.needsVoices;
 		vocals.group = FlxG.sound.defaultMusicGroup;
 
 		gridBackdrops.createGrids(PlayState.SONG.strumLines.length);
