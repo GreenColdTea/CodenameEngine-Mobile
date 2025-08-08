@@ -42,7 +42,7 @@
 	<window if="mac" allow-high-dpi="true" />
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+	<window if="mobile" orientation="landscape" fullscreen="true" resizable="false"/>
 
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
@@ -103,7 +103,7 @@
 
 	<!-- Comment this out to disable video cutscene support, in case of compilation errors. !-->
 	<section if="cpp">
-		<define name="VIDEO_CUTSCENES" if="desktop || android" />
+		<define name="VIDEO_CUTSCENES" if="desktop || mobile" />
 	</section>
 
 	<!-- Comment this out to disable commit number on FPS -->
