@@ -9,6 +9,8 @@
 		<str id="save">Save</str>
 		<str id="saveClose">Save &amp; Close</str>
 		<str id="close">Close</str>
+		<str id="notNow">Not Now</str>
+		<str id="yes">Yes</str>
 	</group>
 
 	<group name="UIImageExplorer" prefix="uiImageExplorer.">
@@ -664,5 +666,13 @@
 		<str id="saveAndExitGame">Save &amp; Exit Game</str>
 		<str id="saveAndExitToMenu">Save &amp; Exit To Menu</str>
 		<str id="cancel">Cancel</str>
+	</group>
+
+	<group name="ModConfigWarning" prefix="modConfigWarning.">
+		<str id="warningTitle">Missing mod folder configuration!</str>
+		<str id="warningDesc">Your mod is currently missing a mod config file!\n\nWould you like to automatically generate one?\n\n(PS: If this is not your mod please disable Developer mode to stop this popup from appearing.)</str>
+
+		<str id="createdTitle">Created mod config!</str>
+		<str id="createdDesc">Your mod config file has been created at {0}!</str>
 	</group>
 </language>
