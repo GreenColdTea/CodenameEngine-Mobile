@@ -150,20 +150,21 @@ class CharterMetaDataScreen extends UISubstateWindow {
 			Reflect.setProperty(customVals, vals.propertyText.label.text, vals.valueText.label.text);
 		}
 
-		PlayState.SONG.meta = {
-			name: songNameTextBox.label.text,
-			bpm: bpmStepper.value,
-			needsVoices: needsVoicesCheckbox.checked,
-			beatsPerMeasure: Std.int(beatsPerMeasureStepper.value),
-			stepsPerBeat: Std.int(16 / denominatorStepper.value),
-			displayName: displayNameTextBox.label.text,
-			icon: iconTextBox.label.text,
-			color: colorWheel.curColor,
-			opponentModeAllowed: opponentModeCheckbox.checked,
-			coopAllowed: coopAllowedCheckbox.checked,
-			difficulties: [for (diff in difficultiesTextBox.label.text.split(",")) diff.trim()],
-			customValues: customVals,
-		};
+		var meta = PlayState.SONG.meta;
+		if (meta == null) meta = {name: songNameTextBox.label.text};
+		else meta.name = songNameTextBox.label.text;
+
+		meta.bpm = bpmStepper.value;
+		meta.needsVoices = needsVoicesCheckbox.checked;
+		meta.beatsPerMeasure = Std.int(beatsPerMeasureStepper.value);
+		meta.stepsPerBeat = Std.int(16 / denominatorStepper.value);
+		meta.displayName = displayNameTextBox.label.text;
+		meta.icon = iconTextBox.label.text;
+		meta.color = colorWheel.curColor;
+		meta.opponentModeAllowed = opponentModeCheckbox.checked;
+		meta.coopAllowed = coopAllowedCheckbox.checked;
+		meta.difficulties = [for (diff in difficultiesTextBox.label.text.split(",")) diff.trim()];
+		meta.customValues = customVals;
 
 		Charter.instance.updateBPMEvents();
 		Charter.instance.vocals.muted = !needsVoicesCheckbox.checked;

@@ -45,12 +45,15 @@
 		<group name="CharterSelection" prefix="charterSelection.">
 			<str id="desc">Select a song to modify the charts from.</str>
 			<str id="acceptSong">Press ACCEPT to choose a difficulty to edit.</str>
+			<str id="acceptVariation">Press ACCEPT to choose a song variation to edit.</str>
 			<str id="acceptDifficulty">Press ACCEPT to edit the chart for the selected difficulty.</str>
 			<str id="selectDifficulty">Select a difficulty to continue.</str>
 			<str id="newDifficulty">New Difficulty</str>
 			<str id="newDifficultyDesc">Press ACCEPT to create a new chart difficulty.</str>
 			<str id="newSong">New Song</str>
 			<str id="newSongDesc">Press ACCEPT to create a new song.</str>
+			<str id="newVariation">New Variation</str>
+			<str id="newVariationDesc">Press ACCEPT to create a new song variation.</str>
 		</group>
 
 		<group name="ChartCreationScreen" prefix="chartCreation.">
@@ -104,6 +107,7 @@
 
 			<str id="songData">Song Data</str>
 			<str id="songName">Song Name</str>
+			<str id="variation">Song Variation</str>
 			<str id="bpm">BPM</str>
 			<str id="timeSignature">Time Signature</str>
 			<str id="menusData">Menus Data (Freeplay/Story)</str>
