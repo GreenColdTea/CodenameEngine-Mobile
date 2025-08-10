@@ -245,7 +245,7 @@ class SongCreationScreen extends UISubstateWindow {
 			var pages = isImporting ? importPages : pages;
 			if (curPage == pages.length-1) {
 				saveSongInfo();
-				close();
+				if (subState == null) close();
 			} else {
 				curPage++;
 				refreshPages();
@@ -296,7 +296,7 @@ class SongCreationScreen extends UISubstateWindow {
 
 			if (curPage == 1) {
 				importInstExplorer.selectable = importVoicesExplorer.selectable = !project;
-				saveButton.selectable = project ? true : (importInstExplorer.file != null);
+				saveButton.selectable = #if TEST_BUILD true #else project ? true : (importInstExplorer.file != null) #end;
 			} else if (curPage == 2) {
 				importIdTextBox.selectable = !project;
 				importChartFile.fileType = project ? "fnfc" : "json";
@@ -415,6 +415,7 @@ class SongCreationScreen extends UISubstateWindow {
 						#end
 					});
 			} catch (e:haxe.Exception) {
+				trace(e.stack, e.message);
 				openSubState(new UIWarningSubstate("Importing Song/Charts: Error!", e.details(), [
 					{label: "Ok", color: 0xFFFF0000, onClick: function(t) {}}
 				]));
@@ -450,7 +451,7 @@ class SongCreationScreen extends UISubstateWindow {
 		var vslicechart:NewSwagSong = Json.parse(files.get('${songId}-chart.json'));
 		var playData = vslicemeta.playData;
 
-		var meta:ChartMetaData = formatMeta({name: songId});
+		var meta:ChartMetaData = formatMeta({name: songId, needsVoices: files.get('Voices.${Flags.SOUND_EXT}') != null});
 		var diffCharts:Array<ChartDataWithInfo> = [], events:Array<ChartEvent> = null;
 		VSliceParser.parse(vslicemeta, vslicechart, meta, diffCharts, songId);
 

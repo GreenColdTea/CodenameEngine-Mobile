@@ -123,9 +123,6 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 
-		updateCurDifficulties();
-		updateCurSong();
-
 		if (curSong != null) {
 			for(k=>diff in curDifficulties) {
 				if (diff == Options.freeplayLastDifficulty) {
@@ -133,6 +130,9 @@ class FreeplayState extends MusicBeatState
 				}
 			}
 		}
+
+		updateCurDifficulties();
+		updateCurSong();
 
 		DiscordUtil.call("onMenuLoaded", ["Freeplay"]);
 
@@ -182,12 +182,11 @@ class FreeplayState extends MusicBeatState
 
 		coopText = new FlxText(diffText.x, diffText.y + diffText.height + 2, 0, "", 24);
 		coopText.font = scoreText.font;
-		coopText.visible = curSong.coopAllowed || curSong.opponentModeAllowed;
 		add(coopText);
 
 		add(scoreText);
 
-		changeDiff(0, true);
+		changeSelection(0, true);
 		changeCoopMode(0, true);
 
 		interpColor = new FlxInterpolateColor(bg.color);
@@ -469,6 +468,11 @@ class FreeplayState extends MusicBeatState
 		}
 
 		changeDiff(0, true);
+
+		#if PRELOAD_ALL
+		autoplayElapsed = 0;
+		songInstPlaying = false;
+		#end
 
 		coopText.visible = curSong.coopAllowed || curSong.opponentModeAllowed;
 	}
