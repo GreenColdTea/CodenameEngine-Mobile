@@ -3,6 +3,7 @@ package funkin.editors.charter;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText.FlxTextFormat;
 import flixel.text.FlxText.FlxTextFormatMarkerPair;
+import funkin.backend.chart.Chart;
 import funkin.backend.chart.ChartData;
 import funkin.backend.chart.FNFLegacyParser.SwagSong;
 import funkin.backend.chart.PsychParser;
@@ -358,7 +359,7 @@ class SongCreationScreen extends UISubstateWindow {
 
 	// for variations
 	function formatMeta(meta:ChartMetaData):ChartMetaData
-		return funkin.backend.chart.Chart.defaultChartMetaFields(meta);
+		return Chart.defaultChartMetaFields(meta);
 
 	function getChartSavePath(meta:ChartMetaData, diff:String):String
 		return 'charts/${meta.variant != null && meta.variant != "" ? meta.variant + "/" : ""}$diff.json';
@@ -386,7 +387,7 @@ class SongCreationScreen extends UISubstateWindow {
 					saveFromVSlice(files, songId);
 				default /*"Psych/Legacy FNF"*/:
 					var songId = importIdTextBox.label.text;
-					var oldChart:SwagSong = Json.parse(cast importChartFile.file);
+					var oldChart:SwagSong = Chart.cleanSongData(Json.parse(cast importChartFile.file));
 					var base:ChartData = {
 						strumLines: [],
 						noteTypes: [],

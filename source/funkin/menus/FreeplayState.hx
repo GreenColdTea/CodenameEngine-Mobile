@@ -123,15 +123,12 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 
-		if (curSong != null) {
-			for(k=>diff in curDifficulties) {
-				if (diff == Options.freeplayLastDifficulty) {
-					curDifficulty = k;
-				}
-			}
+		updateCurDifficulties();
+		for(i=>diff in curDifficulties) {
+			if (curDiffMetaKeys[i] == Options.freeplayLastVariation && diff == Options.freeplayLastDifficulty)
+				curDifficulty = i;
 		}
 
-		updateCurDifficulties();
 		updateCurSong();
 
 		DiscordUtil.call("onMenuLoaded", ["Freeplay"]);
