@@ -1,4 +1,4 @@
-package backend;
+package funkin.mobile.backend;
 
 import flixel.FlxG;
 
