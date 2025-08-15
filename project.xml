@@ -137,7 +137,7 @@
 	<haxelib name="hxdiscord_rpc" if="DISCORD_RPC"/>
 	<haxelib name="markdown" />
 	<haxelib name="hxcpp-debug-server" if="TEST_BUILD debug" />
-	<haxelib name="extrension-androidtools" if="android" />
+	<haxelib name="extension-androidtools" if="android" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
