@@ -25,7 +25,7 @@ import openfl.utils.AssetLibrary;
 import sys.thread.Thread;
 #end
 #if android
-import android.os.Build;
+import extension.androidtools.os.Build;
 #end
 
 class Main extends Sprite
