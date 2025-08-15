@@ -5,8 +5,7 @@
 
 		<!-- OpenFL & Lime (Required for Flixel) -->
 		<git name="openfl" url="https://github.com/CodenameCrew/cne-openfl" />
-		<lib name="lime" version="8.1.2" />
-		<!-- <git name="lime" url="https://github.com/CodenameCrew/cne-lime" />  disabled for now until fixed -->
+		<git name="lime" url="https://github.com/CodenameCrew/cne-lime" ref="new" />
 
 		<!-- Flixel -->
 		<git name="flixel" url="https://github.com/CodenameCrew/cne-flixel" />
@@ -19,6 +18,10 @@
 		<git name="funkin-modchart" url="https://github.com/TheoDevelops/FunkinModchart" ref="f30676579d8de7ccac7d12e13b664e8b2c42c6bf" skipDeps="true" />
 		<lib name="hxvlc" skipDeps="true" />
 
+        <!-- Mobile Libraries -->
+        <git name="hxcpp" url="https://github.com/CodenameCrew/cne-hxcpp" />
+        <git name="extension-androidtools" url="https://github.com/MAJigsaw77/extension-androidtools" skipDeps="true" unless="ios"/>
+		
 		<!-- Documentation and other features -->
 		<git name="away3d" url="https://github.com/CodenameCrew/away3d" />
 		<!-- <lib name="dox" /> -->
