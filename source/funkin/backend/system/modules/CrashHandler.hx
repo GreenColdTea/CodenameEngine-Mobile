@@ -53,6 +53,7 @@ final class CrashHandler {
 
 		NativeAPI.showMessageBox("Codename Engine Crash Handler", 'Uncaught Error:$m\n\n$stackLabel', MSG_ERROR);
 		#if sys
+		saveErrorMessage('$m\n\n$stackLabel');
 		Sys.exit(1);
 		#end
 	}
@@ -62,5 +63,15 @@ final class CrashHandler {
 	{
 		throw Std.string(message);
 	}
+	#end
+
+	#if sys
+	private static function saveErrorMessage(message:String):Void {
+	  try {
+      if (!FileSystem.exists(Sys.getCwd() + 'crash')) FileSystem.createDirectory(Sys.getCwd() + 'crash');
+
+	  File.saveContent(Sys.getCwd() + 'crash/' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.log', message);
+		  }
+		}
 	#end
 }
