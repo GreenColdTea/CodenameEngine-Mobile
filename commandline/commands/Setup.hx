@@ -127,6 +127,8 @@ class Setup {
 			case "Windows": "windows";
 			case "Mac": "mac";
 			case "Linux": "linux";
+			case "Android": "android";
+			case "iOS": "ios";
 			case def: def.toLowerCase();
 		}
 
