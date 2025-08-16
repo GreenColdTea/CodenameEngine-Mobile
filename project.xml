@@ -252,4 +252,8 @@
 
 	<!-- EXPERMENTAL FEATURES -->
 	<haxedef name="EXPERIMENTAL_FLXGRAPHIC_DESTROY_FIX" />
+
+	<!--MAKES ERROR LOGS MORE UNDERSTANDABLE AND READABLE-->
+	<!--FOR HAXE 4.3 AND ABOVE-->
+	<haxedef name="message.reporting" value="pretty">
 </project>
