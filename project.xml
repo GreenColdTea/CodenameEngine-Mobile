@@ -93,7 +93,7 @@
 	<haxedef name="NDLLS_SUPPORTED" unless="web || iphonesim || hl" />
 
 	<!-- Comment this out to use the default OpenFL assets system for the assets/ folder. !-->
-	<define name="USE_ADAPTED_ASSETS" unless="web" />
+	<define name="USE_ADAPTED_ASSETS" unless="web || mobile" />
 
 	<!-- Comment this out to disable support for Away3D Flixel Integration (reduces compile times) !-->
 	<define name="THREE_D_SUPPORT" unless="STRIPPED_COMPILE" />
