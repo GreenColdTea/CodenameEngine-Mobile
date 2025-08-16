@@ -72,12 +72,6 @@ class SystemInfo extends FramerateCategory {
 			osInfo += ' ${lcuVersion}';
 		else if (lime.system.System.platformVersion != null && lime.system.System.platformVersion != "")
 			osInfo += ' ${lime.system.System.platformVersion}';
-		#elseif android
-		var osName = lime.system.System.platformLabel;
-        var osVersion = lime.system.System.platformVersion;
-        var rom = detectROM();
-
-		osInfo = osName + "(" + osVersion + ")" + " - " + rom;
 		#else
 		if (lime.system.System.platformLabel != null && lime.system.System.platformLabel != "" && lime.system.System.platformVersion != null && lime.system.System.platformVersion != "")
 			osInfo = '${lime.system.System.platformLabel.replace(lime.system.System.platformVersion, "").trim()} ${lime.system.System.platformVersion}';
@@ -174,91 +168,4 @@ class SystemInfo extends FramerateCategory {
 		this.text.text = _text;
 		super.__enterFrame(t);
 	}
-
-	#if android
-	static var sysPropGet = lime.system.JNI.createStaticMethod(
-        "android/os/SystemProperties",
-        "get",
-        "(Ljava/lang/String;)Ljava/lang/String;"
-    );
-
-    static function getProp(key:String):String {
-        try {
-            return sysPropGet([key]);
-        } catch (e:Dynamic) {
-            return "";
-        }
-    }
-
-    // --- Build fields ---
-    static var buildManufacturer = lime.system.JNI.createStaticField("android/os/Build", "MANUFACTURER", "Ljava/lang/String;");
-    static var buildBrand        = lime.system.JNI.createStaticField("android/os/Build", "BRAND", "Ljava/lang/String;");
-    static var buildDisplay      = lime.system.JNI.createStaticField("android/os/Build", "DISPLAY", "Ljava/lang/String;");
-
-    static function getBuildField(field:String):String {
-        try {
-            return switch (field) {
-                case "MANUFACTURER": cast buildManufacturer;
-                case "BRAND": cast buildBrand;
-                case "DISPLAY": cast buildDisplay;
-                default: "";
-            }
-        } catch (e:Dynamic) {
-            return "";
-        }
-    }
-
-    static function detectROM():String {
-        var oneui = getProp("ro.build.version.oneui");
-        if (oneui != "") return "OneUI " + oneui;
-
-        var miui = getProp("ro.miui.ui.version.name");
-        if (miui != "") {
-            if (miui.toLowerCase().indexOf("hyper") != -1) return "HyperOS " + miui;
-            return "MIUI " + miui;
-        }
-
-        var coloros = getProp("ro.build.version.opporom");
-        if (coloros != "") return "ColorOS " + coloros;
-
-        var oxygen = getProp("ro.oxygen.version");
-        if (oxygen != "") return "OxygenOS " + oxygen;
-
-        var vivo = getProp("ro.vivo.os.version");
-        if (vivo != "") {
-            if (vivo.toLowerCase().indexOf("origin") != -1) return "OriginOS " + vivo;
-            return "Funtouch OS " + vivo;
-        }
-
-        var magic = getProp("ro.build.version.magic");
-        if (magic != "") {
-            if (magic.toLowerCase().indexOf("harmony") != -1) return "HarmonyOS " + magic;
-            return "MagicOS " + magic;
-        }
-
-        var hios = getProp("ro.hios.id");
-        if (hios != "") return "HiOS " + hios;
-
-        // Fallback: use build fields
-        var manufacturer = getBuildField("MANUFACTURER").toLowerCase();
-        var brand = getBuildField("BRAND").toLowerCase();
-        var display = getBuildField("DISPLAY").toLowerCase();
-
-        if (manufacturer.indexOf("samsung") != -1) return "OneUI (detected by manufacturer)";
-        if (manufacturer.indexOf("xiaomi") != -1 || brand.indexOf("redmi") != -1 || brand.indexOf("poco") != -1) {
-            if (display.indexOf("hyperos") != -1) return "HyperOS";
-            return "MIUI";
-        }
-        if (manufacturer.indexOf("huawei") != -1 || manufacturer.indexOf("honor") != -1) {
-            if (display.indexOf("harmony") != -1) return "HarmonyOS";
-            return "EMUI / MagicOS";
-        }
-        if (manufacturer.indexOf("oppo") != -1 || manufacturer.indexOf("realme") != -1) return "ColorOS";
-        if (manufacturer.indexOf("oneplus") != -1) return "OxygenOS";
-        if (manufacturer.indexOf("vivo") != -1 || brand.indexOf("iqoo") != -1) return "Funtouch OS / OriginOS";
-        if (manufacturer.indexOf("tecno") != -1 || manufacturer.indexOf("infinix") != -1) return "HiOS";
-
-        return "";
-    }
-	#end
 }
