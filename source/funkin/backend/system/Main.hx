@@ -71,6 +71,10 @@ class Main extends Sprite
 
 		instance = this;
 
+		#if android
+		MobileUtil.getPermissions();
+		#end
+		
 		CrashHandler.init();
 
 		addChild(game = new FunkinGame(gameWidth, gameHeight, MainState, Options.framerate, Options.framerate, skipSplash, startFullscreen));
@@ -232,7 +236,6 @@ class Main extends Sprite
 		}
 		#elseif android
 		Sys.setCwd(haxe.io.Path.addTrailingSlash(MobileUtil.getDirectory()));
-		MobileUtil.getPermissions();
 		#elseif (ios || switch)
 		Sys.setCwd(haxe.io.Path.addTrailingSlash(openfl.filesystem.File.applicationStorageDirectory.nativePath));
 		#end
