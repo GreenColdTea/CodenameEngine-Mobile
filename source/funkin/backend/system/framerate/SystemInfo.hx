@@ -245,7 +245,7 @@ class SystemInfo extends FramerateCategory {
         var display = getBuildField("DISPLAY").toLowerCase();
 
         if (manufacturer.indexOf("samsung") != -1) return "OneUI (detected by manufacturer)";
-        if (manufacturer.indexOf("xiaomi") != -1 || brand.indexOf("redmi") != -1) {
+        if (manufacturer.indexOf("xiaomi") != -1 || brand.indexOf("redmi") != -1|| brand.indexOf("poco") != -1) {
             if (display.indexOf("hyperos") != -1) return "HyperOS";
             return "MIUI";
         }
